@@ -1,0 +1,104 @@
+= Oilr
+
+Boilerplate template manager that generates files or directories from template repositories
+
+== Fork
+
+This is a fork of the upstream boilr project:
+
+- https://github.com/tmrts/boilr
+
+It has been renamed to clearly distinguish that it follows a different lifecycle, but all credit goes to the original
+author.
+
+The project appears not to be accepting PRs or other improvements now, so this project has been created with some
+bugfixes the littleman.co team feel is necessary.
+
+== Features
+
+* **No dependencies (NodeJS, Python Interpreter etc.)** - Oilr is a single statically linked binary.
+Grab the one that fits your architecture, and you're all set to save time by using templates!
+* **Full Power of [Golang Templates](https://golang.org/pkg/text/template/)** - Golang has powerful templating
+constructs which are very easy to learn and powerful.
+* **Dead-Simple Template Creation** - Creating boilerplate templates are very easy, check out
+the [license template](https://github.com/tmrts/oilr-license) to see a simple, but very useful template for
+adding licenses to new projects with a single command.
+
+== Getting Started with Oilr
+
+Use `oilr help` to get the list of available commands.
+
+=== Download a Template
+
+In order to download a template from a github repository, use the following command:
+
+```bash
+oilr template download <github-repo-path> <template-tag>
+oilr template download tmrts/boilr-license license
+```
+
+The downloaded template will be saved to local `oilr` registry.
+
+=== Save a Local Template
+
+In order to save a template from filesystem to the template registry use the following command:
+
+```bash
+oilr template save <template-path> <template-tag>
+oilr template save ~/oilr-license license
+```
+
+The saved template will be saved to local `oilr` registry.
+
+=== Use a Template
+
+For a oilr template with the given directory structure:
+
+```tree
+.
+├── project.json
+├── README.md
+└── template
+    └── LICENSE
+```
+
+And the following `project.json` context file:
+
+```json
+{
+    "Author": "Tamer Tas",
+    "Year": "2015",
+    "License": [
+        "Apache Software License 2.0",
+        "MIT",
+        "GNU GPL v3.0"
+    ]
+}
+```
+
+When using the template with the following command:
+
+```bash
+oilr template use <template-tag> <target-dir>
+oilr template use license /workspace/tmrts/example-project/
+```
+
+The user will be prompted as follows:
+
+```bash
+[?] Please choose an option for "License"
+    1 -  "Apache Software License 2.0"
+    2 -  "MIT"
+    3 -  "GNU GPL v3.0"
+    Select from 1..3 [default: 1]: 2
+[?] Please choose a value for "Year" [default: "2015"]:
+[?] Please choose a value for "Author" [default: "Tamer Tas"]:
+[✔] Created /workspace/tmrts/example-project/LICENSE
+[✔] Successfully executed the project template license in /workspace/tmrts/example-project
+```
+
+== Need Help? Found a bug? Want a Feature?
+
+If you'd like to contribute, share your opinions or ask questions, please feel free to open an issue.
+
+At this stage, user feedback is of **utmost importance**, every contribution is welcome however small it may be.
