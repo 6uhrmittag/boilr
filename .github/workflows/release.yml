@@ -30,8 +30,7 @@ jobs:
         run: |
           ls -la
           cd $GITHUB_WORKSPACE
-          GIT_HASH="$(git rev-parse --short "$GITHUB_SHA")"
-          GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build boilr.go  && tar czvf boilr-${GIT_HASH}-linux_amd64.tgz boilr
+          make build-all
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
