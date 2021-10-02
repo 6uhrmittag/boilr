@@ -1,16 +1,14 @@
 ---
-name: "release-latest"
+name: "pre-release"
 
 on:
   push:
-    branches:
+    branches-ignore:
       - master
-  pull_request:
-    branches:
-      - master
+
 jobs:
-  release:
-    name: "Release latest"
+  pre-release:
+    name: "Pre Release"
     runs-on: "ubuntu-latest"
     steps:
       - name: setup Go
@@ -40,8 +38,8 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
-          prerelease: false
-          title: "Latest Build - Branch ${{ env.BRANCHNAME }}"
+          prerelease: true
+          title: "Development Build - Branch ${{ env.BRANCHNAME }}"
           files: |
             *.tgz
 
