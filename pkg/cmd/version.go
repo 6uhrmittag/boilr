@@ -5,9 +5,9 @@ import (
 
 	cli "github.com/spf13/cobra"
 
-	"github.com/tmrts/boilr/pkg/boilr"
-	"github.com/tmrts/boilr/pkg/util/tlog"
-	"github.com/tmrts/boilr/pkg/util/validate"
+	"github.com/6uhrmittag/boilr/pkg/boilr"
+	"github.com/6uhrmittag/boilr/pkg/util/tlog"
+	"github.com/6uhrmittag/boilr/pkg/util/validate"
 )
 
 // Version contains the cli-command for printing the current version of the tool.
@@ -21,7 +21,9 @@ var Version = &cli.Command{
 		if shouldntPrettify {
 			fmt.Println(boilr.Version)
 		} else {
-			tlog.Info(fmt.Sprint("Current version is ", boilr.Version))
+            tlog.Info(fmt.Sprint("This is a forked version of boilr from github.com/6uhrmittag/boilr!"))
+			tlog.Info(fmt.Sprint("You are running Git Commit Hash: ", boilr.Version))
+			tlog.Info(fmt.Sprint("See https://github.com/6uhrmittag/boilr/commit/", boilr.Version))
 		}
 	},
 }

@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	cli "github.com/spf13/cobra"
-	"github.com/tmrts/boilr/pkg/boilr"
-	"github.com/tmrts/boilr/pkg/util/exit"
-	"github.com/tmrts/boilr/pkg/util/osutil"
+	"github.com/6uhrmittag/boilr/pkg/boilr"
+	"github.com/6uhrmittag/boilr/pkg/util/exit"
+	"github.com/6uhrmittag/boilr/pkg/util/osutil"
 )
 
 // Init contains the cli-command for initializing the local template

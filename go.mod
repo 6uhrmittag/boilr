@@ -1,4 +1,4 @@
-module github.com/tmrts/boilr
+module github.com/6uhrmittag/boilr
 
 go 1.15
 

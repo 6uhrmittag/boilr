@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/tmrts/boilr/pkg/util/exit"
-	"github.com/tmrts/boilr/pkg/util/osutil"
+	"github.com/6uhrmittag/boilr/pkg/util/exit"
+	"github.com/6uhrmittag/boilr/pkg/util/osutil"
 )
 
 const (
@@ -16,7 +16,7 @@ const (
 	AppName = "boilr"
 
 	// Version of the application
-	Version = "0.3.0"
+	Version = "958a5f4"
 
 	// ConfigDirPath is the configuration directory of the application
 	ConfigDirPath = ".config/boilr"
@@ -37,10 +37,10 @@ const (
 	TemplateMetadataName = "__metadata.json"
 
 	// GithubOwner is the owner of the github repository
-	GithubOwner = "tmrts"
+	GithubOwner = "6uhrmittag"
 
 	// GithubRepo is the name of the github repository
-	GithubRepo = "boilr"
+	GithubRepo = "6uhrmittag"
 )
 
 // Configuration contains the values for needed for boilr to operate.
