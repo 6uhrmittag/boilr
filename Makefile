@@ -18,8 +18,8 @@ build-all: ## build binaries and tar
 	rm -fr *.tgz
 	GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build boilr.go  && tar czvf boilr-${GIT_HASH}-linux_amd64.tgz boilr
 	GOARCH=386   GOOS=linux CGO_ENABLED=0 go build boilr.go  && tar czvf boilr-${GIT_HASH}-linux_386.tgz boilr
-	GOARCH=amd64 GOOS=darwin CGO_ENABLED=0 go build boilr.go && tar czvf boilr-${GIT_HASH}-darwin_amd64.tgz boilr
-	GOARCH=386   GOOS=darwin CGO_ENABLED=0 go build boilr.go && tar czvf boilr-${GIT_HASH}-darwin_386.tgz boilr
+	# GOARCH=amd64 GOOS=darwin CGO_ENABLED=0 go build boilr.go && tar czvf boilr-${GIT_HASH}-darwin_amd64.tgz boilr
+	# GOARCH=386   GOOS=darwin CGO_ENABLED=0 go build boilr.go && tar czvf boilr-${GIT_HASH}-darwin_386.tgz boilr
 
 gofmt: ## format code
 	go fmt -x ./...
