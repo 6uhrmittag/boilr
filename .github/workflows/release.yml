@@ -23,20 +23,21 @@ jobs:
           echo "GO111MODULE=on" >> $GITHUB_ENV
           echo "GOPROXY=https://proxy.golang.org" >> $GITHUB_ENV
           echo "$(dirname $GITHUB_WORKSPACE)/bin" >> $GITHUB_PATH
-          GIT_HASH="$(git rev-parse --short "$GITHUB_SHA")"
+          echo "BRANCHNAME=$(echo $GITHUB_REF | rev | cut -d / -f1 | rev)" >> $GITHUB_ENV
         shell: bash
 
       - name: build release
         run: |
           ls -la
           cd $GITHUB_WORKSPACE
+          GIT_HASH="$(git rev-parse --short "$GITHUB_SHA")"
           GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build boilr.go  && tar czvf boilr-${GIT_HASH}-linux_amd64.tgz boilr
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: true
-          title: "Development Build - Branch ${{ env.GITHUB_REF }}"
+          title: "Development Build - Branch ${{ env.BRANCHNAME }}"
           files: |
             *.tgz
 
