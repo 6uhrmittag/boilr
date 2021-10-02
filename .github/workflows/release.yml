@@ -1,0 +1,45 @@
+---
+name: "pre-release"
+
+on: [ push ]
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: setup Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: '1.15.x'
+      - name: Checkout Code
+        uses: actions/checkout@v1
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set GOPATH, PATH and ENV
+        run: |
+          echo "GOPATH=$(dirname $GITHUB_WORKSPACE)" >> $GITHUB_ENV
+          echo "GO111MODULE=on" >> $GITHUB_ENV
+          echo "GOPROXY=https://proxy.golang.org" >> $GITHUB_ENV
+          echo "$(dirname $GITHUB_WORKSPACE)/bin" >> $GITHUB_PATH
+          GIT_HASH="$(git rev-parse --short "$GITHUB_SHA")"
+        shell: bash
+
+      - name: build release
+        run: |
+          ls -la
+          cd $GITHUB_WORKSPACE
+          GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build boilr.go  && tar czvf boilr-${GIT_HASH}-linux_amd64.tgz boilr
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build - Branch ${{ env.GITHUB_REF }}"
+          files: |
+            *.tgz
+
+
+
+
